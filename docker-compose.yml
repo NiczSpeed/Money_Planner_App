@@ -1,0 +1,16 @@
+
+networks:
+  default:
+
+services:
+  db:
+    image: mysql:8.0.29
+    container_name: planner_app_database_container
+    ports:
+      - 3307:3306
+    volumes:
+      - "./.data/db:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: password123
+      MYSQL_DATABASE: moneyplanner
+
