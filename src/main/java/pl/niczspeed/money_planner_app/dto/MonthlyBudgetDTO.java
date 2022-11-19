@@ -1,2 +1,12 @@
-package pl.niczspeed.money_planner_app.dto;public class MonthlyBudgetDTO {
+package pl.niczspeed.money_planner_app.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+public class MonthlyBudgetDTO {
 }
