@@ -25,10 +25,7 @@ public class MonthlyBudgetContoller {
         return monthlyBudgetService.test();
     }
 
-    @PutMapping(path = "/save")
-    public void updateStatus(){
-        if(!monthlyBudgetService.dateCheck())monthlyBudgetService.updateStatus();
-    }
+
 
     @PutMapping(path = "/updatePrice")
     public void updatePrice(@RequestBody MonthlyBudget std){

@@ -1,20 +1,18 @@
 package pl.niczspeed.money_planner_app.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Data
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "MONTHLY_BUDGET")
+@Table(name = "MONTHLYBUDGET")
 public class MonthlyBudget {
 
     @Id
@@ -36,9 +34,5 @@ public class MonthlyBudget {
     @Column(name = "active", nullable = false)
     private boolean active = true;
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "user_id")
-    private User user;
 
 }

@@ -1,12 +1,13 @@
 package pl.niczspeed.money_planner_app.service;
 
-import org.hibernate.Cache;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.niczspeed.money_planner_app.model.MonthlyBudget;
 import pl.niczspeed.money_planner_app.repository.MonthlyBudgetRepository;
 
+import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 
 @Service
@@ -17,10 +18,8 @@ public class MonthlyBudgetService {
     private MonthlyBudgetRepository monthlyBudgetRepository;
 
     public void save(MonthlyBudget std) {
-        if (monthlyBudgetRepository.getIdToMenage() == null) monthlyBudgetRepository.save(std);
-
-        else if (!monthlyBudgetRepository.getIdToMenage().equals("1")) monthlyBudgetRepository.save(std);
-
+        if (monthlyBudgetRepository.getIdToMenage() == null || !monthlyBudgetRepository.getIdToMenage().equals("1"))
+            monthlyBudgetRepository.save(std);
     }
 
     public String test() {
@@ -29,11 +28,14 @@ public class MonthlyBudgetService {
     }
 
     public boolean dateCheck() {
-        return LocalDate.now().getMonth().equals(monthlyBudgetRepository.getCreateDateToMenage().getMonth());
+        if (checkTableIsEmpty()) return true;
+        else return LocalDate.now().getMonth().equals(monthlyBudgetRepository.getCreateDateToMenage().getMonth());
     }
 
+    @PostConstruct
+    @Scheduled(cron = "0 0 */1 * * *")
     public void updateStatus() {
-        monthlyBudgetRepository.updateStatus();
+        if (!dateCheck()) monthlyBudgetRepository.updateStatus();
     }
 
     public void updatePrice(MonthlyBudget std) {
@@ -42,12 +44,11 @@ public class MonthlyBudgetService {
         monthlyBudgetRepository.updatePrice(modifyDate, price);
     }
 
-    public boolean checkTableIsEmpty(){
-        if(monthlyBudgetRepository.getIdToMenage() == null) return true;
-        else return false;
+    public boolean checkTableIsEmpty() {
+        return monthlyBudgetRepository.getIdToMenage() == null;
     }
 
-    public void deleteMonthlyBudget(){
-        if(monthlyBudgetRepository.getActiveToMenage().equals("false"))monthlyBudgetRepository.deleteMonthlyBudget();
+    public void deleteMonthlyBudget() {
+        if (monthlyBudgetRepository.getActiveToMenage().equals("false")) monthlyBudgetRepository.deleteMonthlyBudget();
     }
 }
