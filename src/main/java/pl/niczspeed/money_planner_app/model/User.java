@@ -1,15 +1,13 @@
 package pl.niczspeed.money_planner_app.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -27,14 +25,15 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "email")
+    @Column(name = "email",
+    unique = true)
     private String email;
 
     @Column(name = "active")
-    private boolean active;
+    private boolean active = true;
 
-    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "monthlybudgetId", referencedColumnName = "id")
     private MonthlyBudget monthlyBudget;
 
     @JsonManagedReference

@@ -1,19 +1,17 @@
 package pl.niczspeed.money_planner_app.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
+@Data
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "RECCURING_EXPENSES")
+@Table(name = "RECCURINGEXPENSES")
 public class RecurringExpense {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
