@@ -2,6 +2,8 @@ package pl.niczspeed.money_planner_app.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import pl.niczspeed.money_planner_app.model.User;
 import pl.niczspeed.money_planner_app.service.UserService;
 
@@ -17,4 +19,8 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    @PostMapping("/saveUser")
+    public void save(@RequestBody User user){
+        userService.save(user);
+    }
 }
