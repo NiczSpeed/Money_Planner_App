@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Data
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
@@ -25,14 +25,12 @@ public class MonthlyBudget {
 
     @JsonFormat(pattern = "YYYY-MM-dd", shape = JsonFormat.Shape.STRING)
     @Column(name = "createDate", nullable = false)
-    private LocalDate createDate = LocalDate.now();
-
+    private LocalDate createDate;
     @JsonFormat(pattern = "YYYY-MM-dd", shape = JsonFormat.Shape.STRING)
     @Column(name = "modifyDate")
     private LocalDate modifyDate;
 
     @Column(name = "active", nullable = false)
-    private boolean active = true;
-
+    private boolean active;
 
 }

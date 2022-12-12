@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
@@ -19,24 +19,23 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     private String username;
 
     @Column(name = "password")
     private String password;
 
-    @Column(name = "email",
-    unique = true)
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "active")
-    private boolean active = true;
+    private boolean active;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "monthlybudgetId", referencedColumnName = "id")
     private MonthlyBudget monthlyBudget;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<RecurringExpense> recurringExpenseList;
 }

@@ -14,30 +14,30 @@ import java.time.LocalDate;
 @Repository
 public interface MonthlyBudgetRepository extends JpaRepository<MonthlyBudget, Integer> {
 
-    @Query(value = "select createDate from monthlybudget where id = 1", nativeQuery = true)
-    String test();
-
-    @Query(value = "select active from monthlybudget where id = 1", nativeQuery = true)
-    String getActiveToMenage();
+    @Query(value = "select active from monthlybudget where id = :id", nativeQuery = true)
+    String getActiveToMenage(@Param("id") int id);
 
     @Modifying
     @Transactional
-    @Query(value = "update monthlybudget set active = false where id = 1", nativeQuery = true)
-    void updateStatus();
+    @Query(value = "update monthlybudget set active = false where id = :id", nativeQuery = true)
+    void updateStatus(@Param("id") int id);
 
-    @Query(value = "select createDate from monthlybudget where id = 1", nativeQuery = true)
-    LocalDate getCreateDateToMenage();
+    @Query(value = "select createDate from monthlybudget where id = :id", nativeQuery = true)
+    LocalDate getCreateDateToMenage(@Param("id") int id);
 
-    @Query(value = "select id from monthlybudget where id = 1", nativeQuery = true)
-    String getIdToMenage();
-
-    @Modifying
-    @Transactional
-    @Query(value = "update monthlybudget set modifyDate= :modifyDate, price = :price where id = 1", nativeQuery = true)
-    void updatePrice(@Param("modifyDate") LocalDate modifyDate, @Param("price") double price);
+    @Query(value = "select id from monthlybudget where id = :id", nativeQuery = true)
+    String getIdToMenage(@Param("id") int id);
 
     @Modifying
     @Transactional
-    @Query(value = "delete from monthlybudget where id = 1", nativeQuery = true)
-    void deleteMonthlyBudget();
+    @Query(value = "update monthlybudget set modifyDate = :modifyDate, price = :price where id = :id", nativeQuery = true)
+    void updatePrice(@Param("modifyDate") LocalDate modifyDate, @Param("price") double price, @Param("id") int id);
+
+    @Modifying
+    @Transactional
+    @Query(value = "update monthlybudget set active = true, createDate = :createDate, modifyDate = :modifyDate, price = :price  where id = :id", nativeQuery = true)
+    void updateMonthlyBudget(@Param("createDate") LocalDate createDate, @Param("modifyDate") LocalDate modifyDate, @Param("price") double price, @Param("id") int id);
+
+    @Query(value = "select id from users where username = :username", nativeQuery = true)
+    int getIdfromUsername(@Param("username") String username);
 }

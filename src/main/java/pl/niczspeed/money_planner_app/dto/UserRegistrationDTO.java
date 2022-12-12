@@ -5,22 +5,22 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class MonthlyBudgetDTO {
+public class UserRegistrationDTO {
 
     private int id;
 
-    private double price;
+    private String username;
 
-    private LocalDate createDate = LocalDate.now();
+    private String password;
 
-    private LocalDate modifyDate;
+    private String email;
 
     private boolean active = true;
+
+    private MonthlyBudgetDTO monthlyBudgetDTO;
 
 }
