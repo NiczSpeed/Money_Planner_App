@@ -11,6 +11,7 @@ import pl.niczspeed.money_planner_app.model.User;
 import pl.niczspeed.money_planner_app.service.UserService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -35,6 +36,11 @@ public class UserController {
     public void save(@RequestBody UserRegistrationDTO userRegistrationDTO) {
         userRegistrationDTO.setPassword(passwordEncoder.encode(userRegistrationDTO.getPassword()));
         userService.save(userRegistrationDTO);
+    }
+
+    @GetMapping(path = "/User")
+    public Optional<User> getLoggedUser(){
+        return userService.getLoggedUser();
     }
 
     @GetMapping("/")

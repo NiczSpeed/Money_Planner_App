@@ -2,6 +2,7 @@ package pl.niczspeed.money_planner_app.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import pl.niczspeed.money_planner_app.dto.UserRegistrationDTO;
 import pl.niczspeed.money_planner_app.model.User;
@@ -19,5 +20,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     @Query(value = "select email from users", nativeQuery = true)
     List<String> allEmails();
+
+    @Query(value = "select id from users where username = :username", nativeQuery = true)
+    int getIdfromUsername(@Param("username") String username);
+    @Query(value = "select * from users where id = :id", nativeQuery = true)
+    List<UserRegistrationDTO> loggedUserDetails(@Param("id") int id);
 
 }

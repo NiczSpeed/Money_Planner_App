@@ -5,6 +5,8 @@ import pl.niczspeed.money_planner_app.model.MonthlyBudget;
 
 public class MonthlyBudgetMapper {
 
+    private MonthlyBudgetMapper(){}
+
     public static MonthlyBudget mapToMonthlyBudget(MonthlyBudgetDTO monthlyBudgetDTO){
         return MonthlyBudget.builder()
                 .id(monthlyBudgetDTO.getId())

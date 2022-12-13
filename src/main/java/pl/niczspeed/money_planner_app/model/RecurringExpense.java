@@ -1,12 +1,14 @@
 package pl.niczspeed.money_planner_app.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
-@Data
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
@@ -22,13 +24,21 @@ public class RecurringExpense {
     @ManyToOne
     private User user;
 
-    @Column(name = "name")
+    @Column(name = "name",nullable = false)
     private String name;
 
-    @Column(name = "description")
+    @Column(name = "description",nullable = false)
     private String description;
 
-    @Column(name = "value")
+    @Column(name = "value", nullable = false)
     private double value;
+
+    @Column(name = "createDate", nullable = false)
+    @JsonFormat(pattern = "YYYY-MM-dd", shape = JsonFormat.Shape.STRING)
+    private LocalDate createDate;
+
+    @Column(name = "modifyDate")
+    @JsonFormat(pattern = "YYYY-MM-dd", shape = JsonFormat.Shape.STRING)
+    private LocalDate modifyDate;
 
 }

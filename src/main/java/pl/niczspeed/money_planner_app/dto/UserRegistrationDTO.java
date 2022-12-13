@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.niczspeed.money_planner_app.model.RecurringExpense;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,5 +25,7 @@ public class UserRegistrationDTO {
     private boolean active = true;
 
     private MonthlyBudgetDTO monthlyBudgetDTO;
+
+    private List<RecurringExpenseDTO> recurringExpenseDTOS;
 
 }

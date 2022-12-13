@@ -7,6 +7,8 @@ import java.util.List;
 
 public class MonthlyBudgetDTOMapper {
 
+    private MonthlyBudgetDTOMapper(){}
+
     public static List<MonthlyBudgetDTO> mapMonthlyBudgetToMonthlyBudgetDto(List<MonthlyBudget> monthlyBudgets) {
         return monthlyBudgets.stream()
                 .map(monthlyBudget -> new MonthlyBudgetDTO(monthlyBudget.getId(), monthlyBudget.getPrice(), monthlyBudget.getCreateDate(), monthlyBudget.getModifyDate(), monthlyBudget.isActive()))
