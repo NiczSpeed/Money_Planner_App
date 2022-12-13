@@ -12,7 +12,11 @@ public class RecurringExpenseService {
     @Autowired
     private RecurringExpenseRepository recurringExpenseRepository;
 
+    @Autowired
+    private UserService userService;
+
     public void save(RecurringExpenseDTO recurringExpenseDTO){
+        recurringExpenseDTO.setUser(userService.getLoggedUser());
         recurringExpenseRepository.save(mapToRecurringExpense(recurringExpenseDTO));
     }
 

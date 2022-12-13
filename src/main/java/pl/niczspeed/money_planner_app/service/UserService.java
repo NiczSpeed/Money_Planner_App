@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Optional;
 
 import static pl.niczspeed.money_planner_app.mapper.MonthlyBudgetMapper.mapToMonthlyBudget;
+import static pl.niczspeed.money_planner_app.mapper.UserMapper.mapToUser;
+
 
 @Service
 public class UserService {
@@ -38,8 +40,8 @@ public class UserService {
         return userRepository.getIdfromUsername(authentication.getName());
     }
 
-    public Optional<User> getLoggedUser(){
-        return userRepository.findById(getCurrentUserId());
+    public User getLoggedUser(){
+        return userRepository.loggedUserDetails(getCurrentUserId());
     }
 
     public List<User> getAllUsers() {

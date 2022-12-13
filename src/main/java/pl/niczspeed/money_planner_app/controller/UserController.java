@@ -38,10 +38,11 @@ public class UserController {
         userService.save(userRegistrationDTO);
     }
 
-    @GetMapping(path = "/User")
-    public Optional<User> getLoggedUser(){
+    @GetMapping(path = "/user")
+    public User getLoggedUser(){
         return userService.getLoggedUser();
     }
+
 
     @GetMapping("/")
     public String hey(){
