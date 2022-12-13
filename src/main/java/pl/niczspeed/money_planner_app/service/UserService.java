@@ -11,10 +11,8 @@ import pl.niczspeed.money_planner_app.model.User;
 import pl.niczspeed.money_planner_app.repository.UserRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 import static pl.niczspeed.money_planner_app.mapper.MonthlyBudgetMapper.mapToMonthlyBudget;
-import static pl.niczspeed.money_planner_app.mapper.UserMapper.mapToUser;
 
 
 @Service

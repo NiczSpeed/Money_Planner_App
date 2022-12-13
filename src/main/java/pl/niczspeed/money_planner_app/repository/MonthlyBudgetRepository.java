@@ -14,28 +14,28 @@ import java.time.LocalDate;
 @Repository
 public interface MonthlyBudgetRepository extends JpaRepository<MonthlyBudget, Integer> {
 
-    @Query(value = "select active from monthlybudget where id = :id", nativeQuery = true)
+    @Query(value = "select active from monthlybudgets where id = :id", nativeQuery = true)
     String getActiveToMenage(@Param("id") int id);
 
     @Modifying
     @Transactional
-    @Query(value = "update monthlybudget set active = false where id = :id", nativeQuery = true)
+    @Query(value = "update monthlybudgets set active = false where id = :id", nativeQuery = true)
     void updateStatus(@Param("id") int id);
 
-    @Query(value = "select createDate from monthlybudget where id = :id", nativeQuery = true)
+    @Query(value = "select createDate from monthlybudgets where id = :id", nativeQuery = true)
     LocalDate getCreateDateToMenage(@Param("id") int id);
 
-    @Query(value = "select id from monthlybudget where id = :id", nativeQuery = true)
+    @Query(value = "select id from monthlybudgets where id = :id", nativeQuery = true)
     String getIdToMenage(@Param("id") int id);
 
     @Modifying
     @Transactional
-    @Query(value = "update monthlybudget set modifyDate = :modifyDate, price = :price where id = :id", nativeQuery = true)
+    @Query(value = "update monthlybudgets set modifyDate = :modifyDate, price = :price where id = :id", nativeQuery = true)
     void updatePrice(@Param("modifyDate") LocalDate modifyDate, @Param("price") double price, @Param("id") int id);
 
     @Modifying
     @Transactional
-    @Query(value = "update monthlybudget set active = true, createDate = :createDate, modifyDate = :modifyDate, price = :price  where id = :id", nativeQuery = true)
+    @Query(value = "update monthlybudgets set active = true, createDate = :createDate, modifyDate = :modifyDate, price = :price  where id = :id", nativeQuery = true)
     void updateMonthlyBudget(@Param("createDate") LocalDate createDate, @Param("modifyDate") LocalDate modifyDate, @Param("price") double price, @Param("id") int id);
 
     @Query(value = "select id from users where username = :username", nativeQuery = true)

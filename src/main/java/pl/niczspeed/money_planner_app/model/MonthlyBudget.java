@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "MONTHLYBUDGET")
+@Table(name = "MONTHLYBUDGETS")
 public class MonthlyBudget {
 
     @Id
